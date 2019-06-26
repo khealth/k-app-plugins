@@ -1,8 +1,22 @@
 {
-  "plugins": ["node", "import"],
-  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true
+  },  
+  "plugins": ["node", "import", "react", "jsx-a11y"],
+  "extends": [
+    "eslint:recommended", 
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"  
+  ],
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+        "experimentalObjectRestSpread": true,
+        "jsx": true
+    },
     "sourceType": "module"
   },
   "settings": {
