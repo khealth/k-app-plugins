@@ -11,6 +11,7 @@
     "plugin:import/errors",
     "plugin:import/warnings"  
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
     "ecmaFeatures": {
@@ -36,6 +37,18 @@
     "semi": ["error", "never"],
     "no-console": "off",
     "no-process-exit": "off",
-    "node/no-missing-require": "off"
+    "node/no-missing-require": "off",
+    "react/prop-types": [
+      "error",
+      {
+          "ignore": [
+              "children",
+              "style",
+              "navigation"
+          ],
+          "customValidators": [],
+          "skipUndeclared": false
+      }
+    ]    
   }
 }

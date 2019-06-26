@@ -16,9 +16,12 @@
   "author": "",
   "license": "ISC",
   "jest": {
-    "roots": ["src"]
+    "roots": [
+      "src"
+    ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.2",
     "chai": "^4.2.0",
     "eslint": "^6.0.1",
     "eslint-import-resolver-alias": "^1.1.2",
