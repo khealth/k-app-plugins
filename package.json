@@ -1,0 +1,25 @@
+{
+  "name": "k-app-plugins",
+  "version": "1.0.0",
+  "description": "sdk for k app plugins",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint ."
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },  
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^6.0.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0"
+  }
+}

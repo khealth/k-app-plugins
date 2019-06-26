@@ -1,0 +1,6 @@
+.vscode/
+.etc/
+
+node_modules
+
+example/node_modules
