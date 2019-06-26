@@ -16,10 +16,7 @@
   "author": "",
   "license": "ISC",
   "jest": {
-    "preset": "react-native",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|react-universal-markdown)"
-    ]
+    "roots": ["src"]
   },
   "devDependencies": {
     "chai": "^4.2.0",

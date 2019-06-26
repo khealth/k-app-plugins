@@ -1,10 +1,11 @@
-import { PluginsRegsitry } from '../'
+var expect = require('chai').expect
+const { PluginsRegsitry } = require('../')
 
 describe('Basic Plugins Resgitry', () => {
-    PluginsRegsitry.registerPluginApp('my app', () => { }, { title: 'hello world' })
     
-    it('should work', () => {
-        expect(PluginsRegsitry.getPluginApp('my app').title).to.equal('hello world')
+    it('Correctly register app title', () => {
+        PluginsRegsitry.registerPluginApp('my app', () => { }, { title: 'hello world' })
+        expect(PluginsRegsitry.getPluginApp('my app').metadata.title).to.equal('hello world')
     })
 })
 
