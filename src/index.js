@@ -1,6 +1,6 @@
 
 module.exports = {
-    get PluginsRegsitry () {
+    get PluginsRegistry () {
         return require('./plugins-registry')
     }
 }
