@@ -3,13 +3,12 @@ import { View, Text, Button } from 'react-native'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import { PluginsRegistry } from '../../../src'
-
-const APP_NAME = 'example.basic_app'
+import { BASIC_APP_NAME } from '../app-names'
 
 class BasicApp extends React.Component {
 
     exitApp = () => {
-        PluginsRegistry.exitPluginApp(APP_NAME)
+        PluginsRegistry.exitPluginApp(BASIC_APP_NAME)
     }
 
     render() {
@@ -41,5 +40,4 @@ function mapStateToProps(state) {
 }
 
 const BasicAppPimped = connect(mapStateToProps, null)(BasicApp)
-
-PluginsRegistry.registerPluginApp(APP_NAME, () => BasicAppPimped, {title: 'Basic App'})
+export default BasicAppPimped

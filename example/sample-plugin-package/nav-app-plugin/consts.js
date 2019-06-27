@@ -1,1 +1,0 @@
-export const APP_NAME = 'example.nav_app'

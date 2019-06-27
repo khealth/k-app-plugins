@@ -1,8 +1,7 @@
 import React from "react"
 import { View, Text, Button } from "react-native"
 import { PluginsRegistry } from '../../../../src'
-import {APP_NAME} from '../consts'
-
+import { NAV_APP_NAME } from '../../app-names'
 
 class HomeScreen extends React.Component {
 
@@ -12,7 +11,7 @@ class HomeScreen extends React.Component {
     }
 
     exitApp = () => {
-        PluginsRegistry.exitPluginApp(APP_NAME)
+        PluginsRegistry.exitPluginApp(NAV_APP_NAME)
     }    
 
     render() {
