@@ -17,7 +17,7 @@ function buildPluginAppsMenu() {
 }
 
 const pluginsMenuItems = buildPluginAppsMenu()
-const params = {name:'gal', family:'kahana'}
+const params = {name:'gal kahana'}
 
 class Menu extends React.Component {
     render() {

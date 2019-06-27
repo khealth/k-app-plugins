@@ -1,4 +1,5 @@
 import { PluginsRegistry } from '../../src'
+import PluginContainer from './plugin-container'
 
 export function getScreenName(value) {
     return `plugin.${value}`
@@ -7,7 +8,7 @@ export function getScreenName(value) {
 function createScreenForPlugin(pluginInfo) {
     // currently trivial return of component. should encapsulate for better isolation
     // (both in terms of view an data). also align parameters api (currently via nav)
-    return pluginInfo.componentProvider()
+    return PluginContainer(pluginInfo.componentProvider)
 }
 
 export function createPluginScreens() {
