@@ -4,16 +4,10 @@ import { PluginsRegistry } from '../../src'
 
 function buildPluginAppsMenu() {
     const keys = PluginsRegistry.getPluginAppKeys()
-
-    return keys.reduce((acc, value) => {
-        return [
-            {
-                key: value,
-                title:`Go to ${PluginsRegistry.getPluginApp(value).metadata.title || value}`,
-            },
-            ...acc
-        ]
-    }, [])
+    return keys.map(value => ({
+        key: value,
+        title:`Go to ${PluginsRegistry.getPluginApp(value).metadata.title || value}`,
+    }))
 }
 
 const pluginsMenuItems = buildPluginAppsMenu()

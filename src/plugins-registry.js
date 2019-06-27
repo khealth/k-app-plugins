@@ -1,20 +1,21 @@
 
 // # resigtry state
 const _pluginsApps = {}
+const __pluginsAppsOrd = []
 let _containerApp = null
 
 // # plugin side - regitration
 function registerPluginApp(pluginKey, componentProvider, metadata) {
     const pluginRegistryItem = {componentProvider, metadata}
     _pluginsApps[pluginKey] = pluginRegistryItem
+    __pluginsAppsOrd.push(pluginKey)
 
     return pluginRegistryItem
 }
 
 // # app side - querying
 function getPluginAppKeys() {
-    // should preserve order of entry
-    return Object.keys(_pluginsApps)
+    return __pluginsAppsOrd
 }
 
 function getPluginApp(pluginKey) {
