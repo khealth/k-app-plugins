@@ -19,7 +19,12 @@ function runPluginApp(pluginKey, parameters) {
 }
 
 function exitPluginApp(pluginKey) {
-    navigateEx(pluginScreenLaunchSources[pluginKey])
+    const navigateBackTo = pluginScreenLaunchSources[pluginKey]
+    if (!navigateBackTo) {
+        throw new Error("Didnt find exit target. most probably cause launching the app wasn't done with runPluginApp, but rather with an alternative method (like direct navigate)")
+    }
+    delete pluginScreenLaunchSources[pluginKey]
+    navigateEx(navigateBackTo)
 }
 
 
