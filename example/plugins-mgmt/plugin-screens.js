@@ -1,5 +1,28 @@
+import React from 'react'
 import { PluginsRegistry } from '../../src'
-import PluginContainer from './plugin-container'
+
+const IsolatedAppNavigationOptions = {
+    header: null
+}
+
+function PluginContainer(screenImporter) {
+    const TheComponentGlobal = screenImporter()
+    const wrapper = class extends React.PureComponent {
+        constructor(props) {
+            super(props)
+        }
+
+        render() {
+            return <TheComponentGlobal parameters={this.props.navigation.state.params} />
+        }
+    }
+
+    wrapper.navigationOptions = IsolatedAppNavigationOptions
+
+
+    return wrapper
+}
+
 
 export function getScreenName(value) {
     return `plugin.${value}`
