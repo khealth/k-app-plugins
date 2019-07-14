@@ -11,7 +11,7 @@ class HomeScreen extends React.Component {
     }
 
     exitApp = () => {
-        PluginsRegistry.exitPluginApp(NAV_APP_NAME)
+        PluginsRegistry.exitPlugin(NAV_APP_NAME)
     }    
 
     render() {

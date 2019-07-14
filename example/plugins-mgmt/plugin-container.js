@@ -27,7 +27,9 @@ function PluginContainer(screenImporter) {
 
         render() {
             return (<Provider store={isolationStore}>
-                <TheComponentGlobal parameters={this.props.navigation.state.params} />
+                <TheComponentGlobal
+                    parameters={this.props.navigation.state.params.parameters}
+                    initState={this.props.navigation.state.params.initState} />
             </Provider>)
         }
     }

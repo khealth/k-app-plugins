@@ -14,12 +14,12 @@ function createScreenForPlugin(pluginInfo) {
 
 export function createPluginScreens() {
     // iterate plugins and create screen definitons to include in navigator
-    const keys = PluginsRegistry.getPluginAppKeys()
+    const keys = PluginsRegistry.getPluginsKeys()
 
     return keys.reduce((acc, value) => {
         return {
             [getScreenName(value)]: {
-                screen: createScreenForPlugin(PluginsRegistry.getPluginApp(value))
+                screen: createScreenForPlugin(PluginsRegistry.getPlugin(value))
             },
             ...acc
         }

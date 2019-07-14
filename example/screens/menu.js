@@ -3,10 +3,10 @@ import { View, Button } from "react-native"
 import { PluginsRegistry } from '../../src'
 
 function buildPluginAppsMenu() {
-    const keys = PluginsRegistry.getPluginAppKeys()
+    const keys = PluginsRegistry.getPluginsKeys(({ metadata })=> Boolean(metadata.menu))
     return keys.map(value => ({
         key: value,
-        title:`Go to ${PluginsRegistry.getPluginApp(value).metadata.title || value}`,
+        title:`Go to ${PluginsRegistry.getPlugin(value).metadata.menu.title || value}`,
     }))
 }
 
@@ -20,7 +20,7 @@ class Menu extends React.Component {
                 {pluginsMenuItems.map(item => (
                     <Button
                         key={item.key}
-                        onPress={() => { PluginsRegistry.runPluginApp(item.key, params)}}
+                        onPress={() => { PluginsRegistry.runPlugin(item.key, params)}}
                         title={item.title}
                     ></Button>))
                 }

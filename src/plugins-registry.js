@@ -2,16 +2,16 @@
 // # resigtry state
 if (!global._k_app_plugins_plugins_state) {
     global._k_app_plugins_plugins_state = {
-        apps: {},
+        plugins: {},
         ord: []
     }
 }
 
-function _getPluginApps() {
-    return global._k_app_plugins_plugins_state.apps
+function _getPlugins() {
+    return global._k_app_plugins_plugins_state.plugins
 }
 
-function _getPluginAppsOrd() {
+function _getPluginsOrd() {
     return global._k_app_plugins_plugins_state.ord
 }
 
@@ -24,21 +24,34 @@ function _setApp(app) {
 }
 
 // # plugin side - regitration
-function registerPluginApp(pluginKey, componentProvider, metadata) {
+function registerPlugin(pluginKey, componentProvider, metadata) {
     const pluginRegistryItem = {componentProvider, metadata}
-    _getPluginApps()[pluginKey] = pluginRegistryItem
-    _getPluginAppsOrd().push(pluginKey)
+    _getPlugins()[pluginKey] = pluginRegistryItem
+    _getPluginsOrd().push(pluginKey)
 
     return pluginRegistryItem
 }
 
 // # app side - querying
-function getPluginAppKeys() {
-    return _getPluginAppsOrd()
+function _filterPluginKeys(filter) {
+    if (!filter) return _getPluginsOrd()
+
+    return _getPluginsOrd().filter(pluginKey =>
+        filter(_getPlugins()[pluginKey], pluginKey),
+    )
 }
 
-function getPluginApp(pluginKey) {
-    return _getPluginApps()[pluginKey]
+function getPluginsKeys(filter, sort) {
+    const filteredPlugins = _filterPluginKeys(filter)
+    if (!sort) return filteredPlugins
+
+    return filteredPlugins.sort(pluginKey =>
+        sort(_getPlugins(pluginKey), pluginKey),
+    )
+}
+
+function getPlugin(pluginKey) {
+    return _getPlugins()[pluginKey]
 }
 
 // # app side - registration
@@ -47,26 +60,53 @@ function registerContainerApp(containerApp) {
     return containerApp
 } 
 
-// # app side/plugin side - running, exiting
-function runPluginApp(pluginKey, parameters) {
+// # app services
+
+// Plugin start/stop
+function runPlugin(pluginKey, parameters) {
     if (!_getApp())
-        throw new Error("runPluginApp: no container app available")
+        throw new Error("runPlugin: no container app available")
     
-    return _getApp().runPluginApp(pluginKey, parameters)
+    return _getApp().runPlugin(pluginKey, parameters)
 }
 
-function exitPluginApp(pluginKey) {
+function exitPlugin(pluginKey) {
     if (!_getApp())
-        throw new Error("exitPluginApp: no container app available")
+        throw new Error("exitPlugin: no container app available")
     
-    return _getApp().exitPluginApp(pluginKey)
+    return _getApp().exitPlugin(pluginKey)
+}
+
+// Plugin state getting/saving (merge indicates that new data is merged over old data)
+function getPluginState(pluginStateKey) {
+    if (!_getApp())
+        throw new Error("getPluginState: no container app available")
+    
+    return _getApp().getPluginState(pluginStateKey)    
+}
+
+function mergePluginState(pluginStateKey, state) {
+    if (!_getApp())
+        throw new Error("mergePluginState: no container app available")
+    
+    return _getApp().mergePluginState(pluginStateKey, state)    
+}
+
+function setPluginState(pluginStateKey, state) {
+    if (!_getApp())
+        throw new Error("setPluginState: no container app available")
+    
+    return _getApp().setPluginState(pluginStateKey, state)    
 }
 
 module.exports = {
-    registerPluginApp,
-    getPluginAppKeys,
-    getPluginApp,
+    registerPlugin,
+    getPluginsKeys,
+    getPlugin,
     registerContainerApp,
-    runPluginApp,
-    exitPluginApp
+    runPlugin,
+    exitPlugin,
+    getPluginState,
+    mergePluginState,
+    setPluginState
 }
