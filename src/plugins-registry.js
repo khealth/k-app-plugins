@@ -45,9 +45,7 @@ function getPluginsKeys(filter, sort) {
     const filteredPlugins = _filterPluginKeys(filter)
     if (!sort) return filteredPlugins
 
-    return filteredPlugins.sort(pluginKey =>
-        sort(_getPlugins(pluginKey), pluginKey),
-    )
+    return filteredPlugins.sort(sort)
 }
 
 function getPlugin(pluginKey) {
